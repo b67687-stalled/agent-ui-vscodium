@@ -1,27 +1,144 @@
-/* ── Surface depth palette (CopilotKit-style dark theme) ─────────────── */
-@theme {
-  --color-surface-base: #000000;
-  --color-surface-panel: #141414;
-  --color-surface-elevated: #1a1a1a;
-  --color-surface-hover: #222222;
-  --color-surface-sidebar: #0a0a0a;
-  --color-border: #2a2a2a;
-  --color-border-light: #333333;
-  --color-text-primary: #e4e4e7;
-  --color-text-secondary: #a1a1a1;
-  --color-text-muted: #71717a;
-  --color-text-accent: #ff6b00;
+/* ── Theme tokens ───────────────────────────────────────────────────────────
+ * Light: Cursor-inspired warm cream canvas, near-black ink, orange accent.
+ * Dark:  Same philosophy inverted — warm near-black base, cream text.
+ * Both:  Hairline-only depth (no shadows), generous spacing, clean editorial feel.
+ * ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --color-canvas: #f7f7f4;
+  --color-canvas-soft: #fafaf7;
+  --color-surface-card: #ffffff;
+  --color-surface-hover: #efeee8;
+  --color-surface-sidebar: #f4f4f0;
+  --color-surface-strong: #e6e5e0;
+  --color-hairline: #e6e5e0;
+  --color-hairline-soft: #efeee8;
+  --color-hairline-strong: #cfcdc4;
+  --color-ink: #26251e;
+  --color-body: #5a5852;
+  --color-body-strong: #26251e;
+  --color-muted: #807d72;
+  --color-muted-soft: #a09c92;
+  --color-primary: #f54e00;
+  --color-primary-active: #d04200;
+  --color-primary-hover: #e04800;
+  --color-on-primary: #ffffff;
+  --color-brand-50: #fff4ed;
+  --color-brand-100: #ffd5b3;
+  --color-brand-200: #ffab73;
+  --color-brand-300: #ff8033;
+  --color-brand-400: #f55c10;
+  --color-brand-500: #f54e00;
+  --color-brand-600: #d04200;
+  --color-brand-700: #a83300;
+  --color-surface-chat-user: #26251e;
+  --color-surface-chat-user-text: #ffffff;
+  --color-surface-tool-call: #efeee8;
+  --color-surface-code: #efeee8;
+  --color-text-code: #26251e;
+  --color-semantic-success: #1f8a65;
+  --color-semantic-error: #cf2d56;
+  --color-timeline-thinking: #dfa88f;
+  --color-timeline-grep: #9fc9a2;
+  --color-timeline-read: #9fbbe0;
+  --color-timeline-edit: #c0a8dd;
+  --color-timeline-done: #c08532;
+}
+
+.dark {
+  --color-canvas: #0a0a0a;
+  --color-canvas-soft: #111111;
+  --color-surface-card: #141414;
+  --color-surface-hover: #1e1e1e;
+  --color-surface-sidebar: #0d0d0d;
+  --color-surface-strong: #2a2a2a;
+  --color-hairline: #2a2a2a;
+  --color-hairline-soft: #222222;
+  --color-hairline-strong: #333333;
+  --color-ink: #e4e4e0;
+  --color-body: #a1a19c;
+  --color-body-strong: #e4e4e0;
+  --color-muted: #71716c;
+  --color-muted-soft: #5a5a55;
+  --color-primary: #f54e00;
+  --color-primary-active: #ff6b00;
+  --color-primary-hover: #e85a0a;
+  --color-on-primary: #ffffff;
   --color-brand-50: #1a0d00;
   --color-brand-100: #331a00;
   --color-brand-200: #663300;
   --color-brand-300: #994d00;
   --color-brand-400: #cc6600;
-  --color-brand-500: #ff6b00;
+  --color-brand-500: #f54e00;
   --color-brand-600: #e05f00;
   --color-brand-700: #b84d00;
+  --color-surface-chat-user: #e4e4e0;
+  --color-surface-chat-user-text: #1a1a1a;
+  --color-surface-tool-call: #1a1a1a;
+  --color-surface-code: #111111;
+  --color-text-code: #e4e4e0;
+  --color-semantic-success: #2ea873;
+  --color-semantic-error: #e8466a;
+  --color-timeline-thinking: #8a6655;
+  --color-timeline-grep: #4a7a4d;
+  --color-timeline-read: #4a6a90;
+  --color-timeline-edit: #6a5580;
+  --color-timeline-done: #8a6a22;
+}
 
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+@theme {
+  /* Surface colors */
+  --color-canvas: var(--color-canvas);
+  --color-canvas-soft: var(--color-canvas-soft);
+  --color-surface-base: var(--color-canvas);
+  --color-surface-panel: var(--color-surface-card);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-elevated: var(--color-surface-card);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-surface-sidebar: var(--color-surface-sidebar);
+  --color-surface-strong: var(--color-surface-strong);
 
+  /* Borders */
+  --color-border: var(--color-hairline);
+  --color-border-light: var(--color-hairline-soft);
+  --color-border-strong: var(--color-hairline-strong);
+
+  /* Text */
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: var(--color-body);
+  --color-text-muted: var(--color-muted);
+  --color-text-muted-soft: var(--color-muted-soft);
+  --color-text-accent: var(--color-primary);
+
+  /* Brand scale */
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+
+  /* Chat-specific */
+  --color-surface-chat-user: var(--color-surface-chat-user);
+  --color-surface-chat-user-text: var(--color-surface-chat-user-text);
+  --color-surface-tool-call: var(--color-surface-tool-call);
+  --color-surface-code: var(--color-surface-code);
+  --color-text-code: var(--color-text-code);
+
+  /* Semantic */
+  --color-success: var(--color-semantic-success);
+  --color-error: var(--color-semantic-error);
+
+  /* Fonts */
+  --font-mono:
+    "JetBrains Mono", "Fira Code", "SF Mono", ui-monospace, monospace;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+
+  /* Type scale */
   --text-2xs: 10px;
   --text-2xs--line-height: 14px;
   --text-xs: 11px;

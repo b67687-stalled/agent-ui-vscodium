@@ -10,7 +10,7 @@ import { Tab, Sender } from "./types";
 import ProjectSidebar from "./components/ProjectSidebar";
 import TopBar from "./components/TopBar";
 import { ReviewPanel } from "./components/ReviewPanel";
-import { CopilotPanel } from "./components/CopilotPanel";
+import { CustomChatPanel } from "./components/CustomChatPanel";
 import ProjectSelector from "./components/ProjectSelector";
 import ConfigPanel from "./components/ConfigPanel";
 import {
@@ -318,14 +318,10 @@ const App: React.FC = () => {
               style={{ width: `${chatWidthPercent}%` }}
               className="flex-shrink-0 h-full rounded-xl overflow-hidden border border-border bg-surface-panel"
             >
-              <CopilotPanel
+              <CustomChatPanel
                 session={activeSession}
                 activeSessionId={activeSession?.id || null}
                 isStreaming={isStreaming}
-                currentAgent={currentAgent}
-                currentModel={activeSession?.model || "auto"}
-                onAgentChange={handleAgentChange}
-                onModelChange={handleModelChange}
                 onNewChat={() =>
                   !isCreatingSession && handleCreateTask(currentProjectPath)
                 }

@@ -1,100 +1,194 @@
-/* ── Tailwind v4 ─────────────────────────────────────────────────────────── */
+/* ── Tailwind v4 ──────────────────────────────────────────────────────────── */
 @import "tailwindcss";
 @import "./tokens.css";
 
-/* ── Feather gradient for scroll-to-input transition ──────────────────── */
+/* ── Theme variant: class-based dark mode ────────────────────────────────── */
+@custom-variant dark (&:is(.dark *));
+
+/* ── Feather gradient (adapts to theme) ──────────────────────────────────── */
 .feather-gradient {
   background: linear-gradient(
     to top,
-    #000000 0%,
-    #000000 40%,
+    var(--color-surface-card) 0%,
+    var(--color-surface-card) 40%,
     transparent 100%
   );
 }
 
-/* ── Thin minimal scrollbar (CopilotKit-style) ────────────────────────── */
+/* ── Thin minimal scrollbar ──────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-  border-radius: 2px;
+  background: var(--color-hairline);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3a;
+  background: var(--color-muted);
+}
+
+/* ── Base body ───────────────────────────────────────────────────────────── */
+html {
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
 body {
-  background-color: #000000;
-  color: #a1a1a1;
+  background: var(--color-canvas);
+  color: var(--color-body);
   overflow: hidden;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Refined prose for agent messages ──────────────────────────────────── */
+/* ── Smooth theme transitions (opt-in with class) ────────────────────────── */
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* ── Prose for agent messages ────────────────────────────────────────────── */
 .prose-agent {
-  --tw-prose-body: #d4d4d8;
-  --tw-prose-headings: #e4e4e7;
-  --tw-prose-links: #ff6b00;
-  --tw-prose-bold: #e4e4e7;
-  --tw-prose-code: #f59e0b;
-  --tw-prose-pre-bg: #0a0a0a;
-  --tw-prose-quotes: #a1a1a1;
-  --tw-prose-quote-borders: #2a2a2a;
-  --tw-prose-hr: #2a2a2a;
-  --tw-prose-th-borders: #2a2a2a;
-  --tw-prose-td-borders: #1a1a1a;
+  --tw-prose-body: var(--color-body);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-code: var(--color-primary);
+  --tw-prose-pre-bg: var(--color-surface-code);
+  --tw-prose-pre-color: var(--color-text-code);
+  --tw-prose-quotes: var(--color-body);
+  --tw-prose-quote-borders: var(--color-hairline);
+  --tw-prose-hr: var(--color-hairline);
+  --tw-prose-th-borders: var(--color-hairline);
+  --tw-prose-td-borders: var(--color-hairline-soft);
+  --tw-prose-code-bg: var(--color-surface-hover);
+  max-width: 100%;
+  line-height: 1.65;
+}
+.prose-agent code {
+  background: var(--color-surface-hover);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.875em;
+}
+.prose-agent pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
 }
 
-/* ── Empty state animations ───────────────────────────────────────────── */
+/* ── Code blocks ──────────────────────────────────────────────────────────── */
+.chat-code-block {
+  background: var(--color-surface-code);
+  border: 1px solid var(--color-hairline);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0.75rem 0;
+}
+.chat-code-block pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-code);
+}
+.chat-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  background: var(--color-surface-hover);
+  border-bottom: 1px solid var(--color-hairline);
+  font-size: 11px;
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
+/* ── Thinking dots animation ──────────────────────────────────────────────── */
+@keyframes thinking-dot {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+.thinking-dot {
+  animation: thinking-dot 1.4s ease-in-out infinite;
+}
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ── Stream cursor ────────────────────────────────────────────────────────── */
+@keyframes stream-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.stream-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--color-primary);
+  animation: stream-cursor 0.8s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 1px;
+}
+
+/* ── Fade-in-up animation ────────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.25s ease-out forwards;
+}
+
+/* ── Welcome icon float ──────────────────────────────────────────────────── */
 @keyframes icon-float {
   0%,
   100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-@keyframes icon-glow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 6px rgba(255, 107, 0, 0.15));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.5));
-  }
-}
-
-@keyframes text-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes text-fade-out {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-8px);
+  50% {
+    transform: translateY(-4px);
   }
 }
-
-.animate-text-fade-in {
-  animation: text-fade-in 0.25s ease-out forwards;
+.welcome-icon {
+  animation: icon-float 3s ease-in-out infinite;
 }
-.animate-text-fade-out {
-  animation: text-fade-out 0.25s ease-in forwards;
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.empty-state-icon {
+  animation: icon-float 3s ease-in-out infinite;
 }
