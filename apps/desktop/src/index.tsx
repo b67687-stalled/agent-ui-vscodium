@@ -1,5 +1,18 @@
+/**
+ * agent-ui — Application entry point.
+ *
+ * CopilotKit root provider wraps the entire app so that all
+ * CopilotKit V2 components (CopilotChatMessageView, CopilotChatInput,
+ * CopilotChatConfigurationProvider) have access to the CopilotKit context.
+ *
+ * We set runtimeUrl to our own backend so CopilotKit doesn't try to
+ * connect to the CopilotCloud service. Actual SSE streaming is managed
+ * separately by useAgUiStream.
+ */
+
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { CopilotKit } from "@copilotkit/react-core/v2";
 import App from "./App";
 import "./index.css";
 
@@ -11,6 +24,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <CopilotKit runtimeUrl="http://localhost:8000/ag-ui">
+      <App />
+    </CopilotKit>
   </React.StrictMode>,
 );
