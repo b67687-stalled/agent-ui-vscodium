@@ -1,0 +1,100 @@
+/* ── Tailwind v4 ─────────────────────────────────────────────────────────── */
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* ── Feather gradient for scroll-to-input transition ──────────────────── */
+.feather-gradient {
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    #000000 40%,
+    transparent 100%
+  );
+}
+
+/* ── Thin minimal scrollbar (CopilotKit-style) ────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+body {
+  background-color: #000000;
+  color: #a1a1a1;
+  overflow: hidden;
+}
+
+/* ── Refined prose for agent messages ──────────────────────────────────── */
+.prose-agent {
+  --tw-prose-body: #d4d4d8;
+  --tw-prose-headings: #e4e4e7;
+  --tw-prose-links: #ff6b00;
+  --tw-prose-bold: #e4e4e7;
+  --tw-prose-code: #f59e0b;
+  --tw-prose-pre-bg: #0a0a0a;
+  --tw-prose-quotes: #a1a1a1;
+  --tw-prose-quote-borders: #2a2a2a;
+  --tw-prose-hr: #2a2a2a;
+  --tw-prose-th-borders: #2a2a2a;
+  --tw-prose-td-borders: #1a1a1a;
+}
+
+/* ── Empty state animations ───────────────────────────────────────────── */
+@keyframes icon-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes icon-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(255, 107, 0, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.5));
+  }
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes text-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.animate-text-fade-in {
+  animation: text-fade-in 0.25s ease-out forwards;
+}
+.animate-text-fade-out {
+  animation: text-fade-out 0.25s ease-in forwards;
+}

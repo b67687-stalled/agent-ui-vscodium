@@ -1,0 +1,35 @@
+/* ── Surface depth palette (CopilotKit-style dark theme) ─────────────── */
+@theme {
+  --color-surface-base: #000000;
+  --color-surface-panel: #141414;
+  --color-surface-elevated: #1a1a1a;
+  --color-surface-hover: #222222;
+  --color-surface-sidebar: #0a0a0a;
+  --color-border: #2a2a2a;
+  --color-border-light: #333333;
+  --color-text-primary: #e4e4e7;
+  --color-text-secondary: #a1a1a1;
+  --color-text-muted: #71717a;
+  --color-text-accent: #ff6b00;
+  --color-brand-50: #1a0d00;
+  --color-brand-100: #331a00;
+  --color-brand-200: #663300;
+  --color-brand-300: #994d00;
+  --color-brand-400: #cc6600;
+  --color-brand-500: #ff6b00;
+  --color-brand-600: #e05f00;
+  --color-brand-700: #b84d00;
+
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --text-2xs: 10px;
+  --text-2xs--line-height: 14px;
+  --text-xs: 11px;
+  --text-xs--line-height: 16px;
+  --text-sm: 13px;
+  --text-sm--line-height: 20px;
+  --text-base: 14px;
+  --text-base--line-height: 22px;
+  --text-lg: 16px;
+  --text-lg--line-height: 24px;
+}

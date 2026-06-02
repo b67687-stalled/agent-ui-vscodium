@@ -1,0 +1,12 @@
+{
+  "projectName": "agent-ui",
+  "displayTitle": "agent-ui",
+  "agentCommand": ["omp", "acp"],
+  "backendPort": 8000,
+  "corsOrigins": [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002"
+  ]
+}
