@@ -23,6 +23,7 @@ from backend.config import load_config
 from backend.schemas.api import HealthResponse
 
 from backend.logging_config import setup_logging
+from backend.agent.runner import shutdown_runner
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -53,6 +54,7 @@ async def lifespan(app: FastAPI):
     yield
 
     logger.info("Shutting down ACP → AG-UI Bridge")
+    await shutdown_runner()
 
 
 app = FastAPI(
