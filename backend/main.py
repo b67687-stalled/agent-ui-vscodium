@@ -82,6 +82,10 @@ from backend.api import files, git
 app.include_router(files.router, prefix="/api", tags=["files"])
 app.include_router(git.router, prefix="/api", tags=["git"])
 
+from backend.v2_routes import router as v2_router
+
+app.include_router(v2_router, tags=["v2"])
+
 from backend.agui_endpoint import router as agui_router
 
 app.include_router(agui_router, tags=["ag-ui"])
