@@ -12,6 +12,7 @@ if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from fastapi import FastAPI
@@ -22,6 +23,7 @@ from backend.config import load_config
 from backend.schemas.api import HealthResponse
 
 from backend.logging_config import setup_logging
+
 setup_logging()
 logger = logging.getLogger(__name__)
 
@@ -46,21 +48,11 @@ async def lifespan(app: FastAPI):
     logger.info("---")
 
     app.state.config = config
-
-    from backend.sessions.store import SessionStore
-    session_store = SessionStore(db_path=config.db_path)
-    await session_store.initialize()
-    app.state.session_store = session_store
-
-    from backend.sessions.manager import SessionManager
-    session_manager = SessionManager(session_store, agent_command=config.agent_command)
-    app.state.session_manager = session_manager
+    app.state.sessions: dict[str, dict] = {}
 
     yield
 
     logger.info("Shutting down ACP → AG-UI Bridge")
-    await session_manager.shutdown()
-    await session_store.close()
 
 
 app = FastAPI(
@@ -89,10 +81,6 @@ from backend.api import files, git
 
 app.include_router(files.router, prefix="/api", tags=["files"])
 app.include_router(git.router, prefix="/api", tags=["git"])
-
-from backend.sessions.routes import router as sessions_router
-
-app.include_router(sessions_router, tags=["sessions"])
 
 from backend.agui_endpoint import router as agui_router
 
