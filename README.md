@@ -1,6 +1,6 @@
 # agent-ui-vscodium
 
-**Archived — VSCodium AI-native editor fork.** 90 files, 18K+ lines of core editor modifications.
+**VSCodium AI-native editor fork.** 90 files, 18K+ lines of core editor modifications.
 
 ## What This Was
 
@@ -24,7 +24,7 @@ A deep fork of [VSCodium](https://github.com/VSCodium/vscodium) (MIT-licensed VS
 ## Status
 
 ✅ Suffix-built, packaged, verified on WSL2 + MiniPC (Ubuntu 26.04, 24c/28GB)
-🔄 Superseded by [agent-stack](https://github.com/B67687/agent-stack) — same ACP stack, now using [Terax AI](https://github.com/crynta/terax-ai) as the frontend
+🔄 See [agent-stack](https://github.com/B67687/agent-stack) for the current evolution using [Terax AI](https://github.com/crynta/terax-ai)
 
 ## Related
 
